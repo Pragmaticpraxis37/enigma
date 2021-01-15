@@ -4,11 +4,14 @@ class Enigma
               :key,
               :date
 
-  def initialize(message, date = Time.now, *key)
+  def initialize(message, *optional_key_and_date)
     @message = message
-    @key = key[0]
+    @key = optional_key_and_date[0]
     require "pry"; binding.pry
-    @date = date
+    if optional_key_and_date[1].nil? == true
+      @date = create_date
+    else
+      @date = Time.now.strftime("%d%m%y")
+    end
   end
-
 end
