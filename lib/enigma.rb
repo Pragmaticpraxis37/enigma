@@ -7,17 +7,15 @@ class Enigma
   def initialize(message, *optional_key_and_date)
     @message = message
     @key = determine_key(optional_key_and_date)
-    # @date = determine_date(optional_key_and_date)
+    @date = determine_date(optional_key_and_date)
   end
 
   def determine_key(optional_key_and_date)
     if optional_key_and_date.empty?
       return create_key
     elsif optional_key_and_date.length == 1 && optional_key_and_date[0].length != 5
-      require "pry"; binding.pry
       return create_key
     else
-      require "pry"; binding.pry
       return optional_key_and_date[0]
     end
   end
@@ -33,21 +31,19 @@ class Enigma
     end
   end
 
-  def determine_if_optional_argument_has_key
-
-  end
-
-  def find_key
-
-  end
-
-
-
   def determine_date(optional_key_and_date)
-    require "pry"; binding.pry
+    if optional_key_and_date.empty?
+      return create_date
+    elsif optional_key_and_date.length == 1 && optional_key_and_date[0].length != 6
+      return create_date
+    else
+      return optional_key_and_date[1]
+    end
   end
 
-
+  def create_date
+    @date = Time.now.strftime("%d%m%y")
+  end
 end
 
 
