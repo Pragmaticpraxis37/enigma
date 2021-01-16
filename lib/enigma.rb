@@ -36,7 +36,7 @@ end
   #
   # end
 
-  # "%05d" %(x)
+
   # def determine_key(optional_key_and_date)
   #   if optional_key_and_date.empty?
   #     return create_key

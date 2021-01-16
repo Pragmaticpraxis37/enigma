@@ -1,5 +1,5 @@
 class Key
-  attr_reader :key 
+  attr_reader :key
 
 
   def initialize(key)
@@ -14,6 +14,11 @@ class Key
     else
       "All user created keys must be a five digit string.  Please try again."
     end
+  end
 
+  def create_key
+    key = rand(1..99999)
+    key = "%05d" %(x)
+    return key
   end
 end
