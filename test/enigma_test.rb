@@ -21,15 +21,19 @@ class EnigmaTest < Minitest::Test
 
   def test_key_argument_has_default_value
     enigma = Enigma.new("Hello world", "040800")
-
-    assert_equal "Hello world", enigma.message
     assert_equal 5, enigma.key.length
-    assert_equal "040800", enigma.date
   end
 
-  def test_date_and_key_argument_have_default_values
-    enigma = Enigma.new("Hello world", "040800")
+  def test_key_is_generated_if_no_optional_arguments
+    enigma = Enigma.new("Hello")
 
+    assert_equal 5, enigma.key.length
+
+  end
+
+  def test_date_and_key_arguments_have_default_values
+    enigma = Enigma.new("Hello world")
+    require "pry"; binding.pry
     assert_equal "Hello world", enigma.message
     assert_equal 5, enigma.key.length
     assert_equal Time.now.strftime("%d%m%y"), enigma.date
