@@ -10,9 +10,15 @@ class KeyTest < Minitest::Test
     assert_instance_of Key, key
   end
 
-  def test_determine_if_key_returns_key_provided
+  def test_determine_if_key_provided_returns_user_created_key
     key = Key.new("00001")
 
-    assert_equal "00001", key.key 
+    assert_equal "00001", key.key
+  end
+
+  def test_determine_if_key_provided_returns_try_again_message
+    key = Key.new(10101)
+
+    assert_equal "All user created keys must be a five digit string.  Please try again.", key.key
   end
 end
