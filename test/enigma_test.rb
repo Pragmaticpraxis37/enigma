@@ -26,14 +26,16 @@ class EnigmaTest < Minitest::Test
 
   def test_key_is_generated_if_no_optional_arguments
     enigma = Enigma.new("Hello")
-
     assert_equal 5, enigma.key.length
+  end
 
+  def test_date_is_generated_if_no_optional_arguments
+    enigma = Enigma.new("Hello")
+    assert_equal Time.now.strftime("%d%m%y"), enigma.date
   end
 
   def test_date_and_key_arguments_have_default_values
     enigma = Enigma.new("Hello world")
-    require "pry"; binding.pry
     assert_equal "Hello world", enigma.message
     assert_equal 5, enigma.key.length
     assert_equal Time.now.strftime("%d%m%y"), enigma.date
