@@ -9,6 +9,7 @@ class Enigma
 
   def encrypt(message, key='none', date='none')
     key = Key.new(key)
+    date = Offset.new(date)
     require "pry"; binding.pry
   end
 
