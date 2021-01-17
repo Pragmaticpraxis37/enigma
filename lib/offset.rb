@@ -1,5 +1,7 @@
 class Offset
 
+  attr_reader :date
+
   def initialize(date)
     @date = determine_if_date_provided(date)
     @offset_shift_a = ""
