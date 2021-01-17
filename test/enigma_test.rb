@@ -14,6 +14,13 @@ class EnigmaTest < Minitest::Test
     enigma.encrypt('Hello world')
     require "pry"; binding.pry
   end
+
+
+    def test_determine_if_key_provided_returns_try_again_message
+      key = Key.new(10101)
+
+      assert_equal 'All user created keys must be a five-digit string.  Please try again.', key.key
+    end
   #
   # def test_date_argument_has_default_value
   #   enigma = Enigma.new("Hello world", "10101")
