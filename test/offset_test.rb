@@ -49,14 +49,14 @@ class OffsetTest < Minitest::Test
   def test_split_offset_by_shift_when_user_created_date
     offset = Offset.new('010210')
 
-    assert_equal '9', offset.offset_shift_a
-    assert_equal '8', offset.offset_shift_b
-    assert_equal '2', offset.offset_shift_c
-    assert_equal '4', offset.offset_shift_d
+    assert_equal '4', offset.offset_shift_a
+    assert_equal '1', offset.offset_shift_b
+    assert_equal '0', offset.offset_shift_c
+    assert_equal '0', offset.offset_shift_d
   end
 
-  def test_split_offset_by_shift_when_user_created_date
-    offset = Offset.new('010210')
+  def test_split_offset_by_shift_when_create_date_provides_date
+    offset = Offset.new('none')
 
     assert_equal 1, offset.offset_shift_a.length
     assert_equal 1, offset.offset_shift_b.length
