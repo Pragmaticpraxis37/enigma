@@ -18,5 +18,9 @@ class Offset
     end
   end
 
+  def create_date
+    @date = Time.now.strftime("%d%m%y")
+    require "pry"; binding.pry
+  end
 
 end
