@@ -11,16 +11,21 @@ class CipherTest < Minitest::Test
   end
 
   def test_it_has_attributes
-    cipher = Cipher.new("Hello world", "02715", "040895")
+    cipher = Cipher.new("Hello world", "02715", "1025")
 
     assert_equal "Hello world", cipher.message
-    assert_equal "02715", cipher.key
-    assert_equal "040895", cipher.offset
+    assert_equal ["0", "2", "7", "1", "5"], cipher.key
+    assert_equal ["1", "0", "2", "5"], cipher.offset
   end
 
-  def test_case_name
+  def test_create_sub_keys
+    cipher = Cipher.new("Hello world", "02715", "1025")
 
+    expected = {"a"=>2, "b"=>27, "c"=>71, "d"=>15}
+
+    assert_equal expected, cipher.create_sub_keys
   end
+
 end
 
 
