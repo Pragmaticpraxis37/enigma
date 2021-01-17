@@ -1,13 +1,18 @@
 class Cipher
   attr_reader :message,
               :key,
-              :offset
+              :offset,
+              :shifts,
+              :original_set,
+              :unciphered_index_collection
 
   def initialize(message, key, offset)
-    @message = message
+    @message = message.downcase.split("")
     @key = key.split("")
     @offset = offset.split("")
     @shifts = {}
+    @original_set = (("a".."z").to_a << " ")
+    @unciphered_index_collection = []
   end
 
   def create_sub_keys
@@ -37,6 +42,12 @@ class Cipher
           @shifts[key_letter] = key_value + offset_value
         end
       end
+    end
+  end
+
+  def create_unciphered_index_collection
+    @message.each do |letter|
+      @unciphered_index_collection << original_set.index(letter)
     end
   end
 

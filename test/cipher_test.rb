@@ -50,6 +50,7 @@ class CipherTest < Minitest::Test
 
   def test_create_unciphered_index_collection
     cipher = Cipher.new("Hello world", "02715", "1025")
+    cipher.create_unciphered_index_collection
 
     expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
 
