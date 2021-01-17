@@ -1,38 +1,45 @@
 class Offset
 
   attr_reader :date,
-              :squared
+              :squared,
+              :squared_last_four,
+              :offset_shift_a,
+              :offset_shift_b,
+              :offset_shift_c,
+              :offset_shift_d
 
   def initialize(date)
     @squared = 0
-    @offset_shift_a = ""
-    @offset_shift_b = ""
-    @offset_shift_c = ""
-    @offset_shift_d = ""
-    @date = determine_if_date_provided(date)
+    @squared_last_four = ''
+    @offset_shift_a = ''
+    @offset_shift_b = ''
+    @offset_shift_c = ''
+    @offset_shift_d = ''
+    @date = date
+    determine_if_date_provided(date)
   end
 
   def determine_if_date_provided(date)
     if date == 'none'
       create_date
     elsif (date.class == String) && date.length == 6
-      return date
+      @date = date
+      square_date(date)
     end
   end
 
   def create_date
-    @date = Time.now.strftime("%d%m%y")
+    @date = Time.now.strftime('%d%m%y')
+    square_date(date)
   end
 
   def square_date(date)
-    require "pry"; binding.pry
     @squared = date.to_i ** 2
-    remove_last_four_of_squared_date(squared)
+    remove_last_four_of_date_squared(squared)
   end
 
-  def remove_last_four_of_squared_date(squared)
-    @squared = squared[-4..-1]
-    require "pry"; binding.pry
+  def remove_last_four_of_date_squared(squared)
+    @squared_last_four = @squared.to_s[-4..-1]
   end
 
 end
