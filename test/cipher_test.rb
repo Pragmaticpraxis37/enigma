@@ -26,6 +26,21 @@ class CipherTest < Minitest::Test
     assert_equal expected, cipher.create_sub_keys
   end
 
+  def test_create_sub_offsets
+    cipher = Cipher.new("Hello world", "02715", "1025")
+
+    expected = {"a"=>1, "b"=>0, "c"=>2, "d"=>5}
+
+    assert_equal expected, cipher.create_sub_offsets
+  end
+
+  def test_create_shifts
+    cipher = Cipher.new("Hello world", "02715", "1025")
+
+    expected = {"a"=>3, "b"=>27, "c"=>73, "d"=>20}
+
+    assert_equal expected, cipher.shifts
+  end
 end
 
 
