@@ -19,7 +19,7 @@ class Key
       create_key
     elsif (key.class == String) && key.length == 5
       return key
-    end 
+    end
   end
 
   def create_key
@@ -29,9 +29,9 @@ class Key
   end
 
   def split_key_by_shift(key)
-    @key_shift_a = key[0..1]
-    @key_shift_b = key[1..2]
-    @key_shift_c = key[2..3]
-    @key_shift_d = key[3..4]
+    @key_shift_a = @key[0..1]
+    @key_shift_b = @key[1..2]
+    @key_shift_c = @key[2..3]
+    @key_shift_d = @key[3..4]
   end
 end
