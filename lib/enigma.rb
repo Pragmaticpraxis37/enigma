@@ -1,5 +1,7 @@
 require 'date'
 require './lib/key'
+require './lib/offset'
+require './lib/cipher'
 
 class Enigma
 
@@ -7,10 +9,10 @@ class Enigma
 
   end
 
-  def encrypt(message, key='none', date='none')
+  def encrypt(message, key='none', offset='none')
     key = Key.new(key)
-    date = Offset.new(date)
-    require "pry"; binding.pry
+    offset = Offset.new(offset)
+    cipher = Cipher.new(message, key.key, offset.squared_last_four)
   end
 
   def decrypt(ciphertext, key, date='none')

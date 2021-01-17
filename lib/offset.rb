@@ -40,14 +40,8 @@ class Offset
 
   def remove_last_four_of_date_squared
     @squared_last_four = @squared.to_s[-4..-1]
-    split_offset_by_shift
   end
 
-  def split_offset_by_shift
-    @offset_shift_a = @squared_last_four[0]
-    @offset_shift_b = @squared_last_four[1]
-    @offset_shift_c = @squared_last_four[2]
-    @offset_shift_d = @squared_last_four[3]
-  end
+
 
 end
