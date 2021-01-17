@@ -7,6 +7,7 @@ class Cipher
     @message = message
     @key = key.split("")
     @offset = offset.split("")
+    @shifts = {}
   end
 
   def create_sub_keys
@@ -17,6 +18,20 @@ class Cipher
       ord_letter += 1
       sub_keys
     end
+  end
+
+  def create_sub_offsets
+    ord_letter = 97
+
+    @offset.reduce({}) do |sub_offsets, num|
+      sub_offsets[ord_letter.chr] = num.to_i
+      ord_letter += 1
+      sub_offsets
+    end
+  end
+
+  def create_shifts
+
   end
 
 end
