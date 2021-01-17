@@ -13,9 +13,14 @@ class CipherTest < Minitest::Test
   def test_it_has_attributes
     cipher = Cipher.new("Hello world", "02715", "1025")
 
-    assert_equal "Hello world", cipher.message
+    expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+                "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+                " "]
+
+    assert_equal ["H", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"], cipher.message
     assert_equal ["0", "2", "7", "1", "5"], cipher.key
     assert_equal ["1", "0", "2", "5"], cipher.offset
+    assert_equal expected, cipher.original_set
   end
 
   def test_create_sub_keys
@@ -36,10 +41,19 @@ class CipherTest < Minitest::Test
 
   def test_create_shifts
     cipher = Cipher.new("Hello world", "02715", "1025")
+    cipher.create_shifts
 
     expected = {"a"=>3, "b"=>27, "c"=>73, "d"=>20}
 
     assert_equal expected, cipher.shifts
+  end
+
+  def test_create_unciphered_index_collection
+    cipher = Cipher.new("Hello world", "02715", "1025")
+
+    expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
+
+    assert_equal expected, cipher.create_unciphered_index_collection
   end
 end
 
