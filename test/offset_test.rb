@@ -24,15 +24,13 @@ class OffsetTest < Minitest::Test
 
   def test_square_date
     offset = Offset.new('010200')
-    offset.square_date('010200')
 
-    assert_equal 104040000, offset.squared("010200")
+    assert_equal 104040000, offset.squared
   end
 
-  def test_remove_last_four_of_squared_date
-    skip
+  def test_remove_last_four_of_date_squared
     offset = Offset.new("010200")
 
-    assert_equal 0000, offset.square_date("010200")
+    assert_equal "0000", offset.squared_last_four
   end
 end
