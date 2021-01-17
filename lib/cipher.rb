@@ -31,7 +31,13 @@ class Cipher
   end
 
   def create_shifts
-
+    create_sub_keys.each do |key_letter, key_value|
+      create_sub_offsets.each do |offset_letter, offset_value|
+        if key_letter == offset_letter
+          @shifts[key_letter] = key_value + offset_value
+        end
+      end
+    end
   end
 
 end
