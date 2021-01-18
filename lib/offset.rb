@@ -2,19 +2,11 @@ class Offset
 
   attr_reader :date,
               :squared,
-              :squared_last_four,
-              :offset_shift_a,
-              :offset_shift_b,
-              :offset_shift_c,
-              :offset_shift_d
+              :squared_last_four
 
   def initialize(date)
     @squared = 0
     @squared_last_four = ''
-    @offset_shift_a = ''
-    @offset_shift_b = ''
-    @offset_shift_c = ''
-    @offset_shift_d = ''
     @date = date
     determine_if_date_provided(date)
   end
@@ -41,7 +33,4 @@ class Offset
   def remove_last_four_of_date_squared
     @squared_last_four = @squared.to_s[-4..-1]
   end
-
-
-
 end
