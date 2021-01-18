@@ -7,7 +7,8 @@ class Decipher
               :shift_a_set,
               :shift_b_set,
               :shift_c_set,
-              :shift_d_set
+              :shift_d_set,
+              :ciphered_index_collection
 
   def initialize(ciphertext, key, offset)
     @ciphertext = ciphertext.downcase.split("")
@@ -19,6 +20,7 @@ class Decipher
     @shift_b_set = []
     @shift_c_set = []
     @shift_d_set = []
+    @ciphered_index_collection = []
   end
 
   def create_sub_keys
@@ -65,30 +67,27 @@ class Decipher
     end
   end
 
-  def decrypt
+  def create_ciphered_index_collection
     first = 1
     second = 2
     third = 3
     fourth = 4
-    decoded = []
     @ciphertext.each_with_index do |letter, index|
       index += 1
       if index == first
-        decoded << @shift_a_set.index(letter)
+        @ciphered_index_collection << @shift_a_set.index(letter)
         first += 4
       elsif index == second
-        decoded << @shift_b_set.index(letter)
+        @ciphered_index_collection << @shift_b_set.index(letter)
         second += 4
       elsif index == third
-        decoded << @shift_c_set.index(letter)
+        @ciphered_index_collection << @shift_c_set.index(letter)
         third += 4
       elsif index == fourth
-        decoded << @shift_d_set.index(letter)
+        @ciphered_index_collection << @shift_d_set.index(letter)
         fourth += 4
       end
     end
-    decoded
-    require "pry"; binding.pry
   end
 
 end
