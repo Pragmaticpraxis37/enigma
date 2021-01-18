@@ -2,7 +2,7 @@ require './test/test_helper'
 
 class CipherTest < Minitest::Test
   def test_it_exists
-    cipher = Cipher.new("Hello world", "02715", "040895")
+    cipher = Cipher.new("Hello world", "02715", "1025")
     assert_instance_of Cipher, cipher
   end
 
@@ -21,6 +21,7 @@ class CipherTest < Minitest::Test
 
   def test_create_sub_keys
     cipher = Cipher.new("Hello world", "02715", "1025")
+    # cipher.create_sub_keys
 
     expected = {"a"=>2, "b"=>27, "c"=>71, "d"=>15}
 
@@ -37,7 +38,7 @@ class CipherTest < Minitest::Test
 
   def test_create_shifts
     cipher = Cipher.new("Hello world", "02715", "1025")
-    cipher.create_shifts
+    # cipher.create_shifts
 
     expected = {"a"=>3, "b"=>27, "c"=>73, "d"=>20}
 
@@ -46,7 +47,6 @@ class CipherTest < Minitest::Test
 
   def test_create_unciphered_index_collection
     cipher = Cipher.new("Hello world", "02715", "1025")
-    cipher.create_unciphered_index_collection
 
     expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
 
@@ -55,8 +55,8 @@ class CipherTest < Minitest::Test
 
   def test_create_shift_sets
     cipher = Cipher.new("Hello world", "02715", "1025")
-    cipher.create_shifts
-    cipher.create_shift_sets
+    # cipher.create_shifts
+    # cipher.create_shift_sets
 
     expected_1 = ["d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
                   "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ",
@@ -79,18 +79,18 @@ class CipherTest < Minitest::Test
 
   def test_encrypt_hello_world
     cipher = Cipher.new("Hello world", "02715", "1025")
-    cipher.create_shifts
-    cipher.create_shift_sets
-    cipher.create_unciphered_index_collection
+    # cipher.create_shifts
+    # cipher.create_shift_sets
+    # cipher.create_unciphered_index_collection
 
     assert_equal "keder ohulw", cipher.encrypt
   end
 
   def test_encrypt_here_it_is
     cipher = Cipher.new("Here it is", "52631", "8884")
-    cipher.create_shifts
-    cipher.create_shift_sets
-    cipher.create_unciphered_index_collection
+    # cipher.create_shifts
+    # cipher.create_shift_sets
+    # cipher.create_unciphered_index_collection
 
     assert_equal "nlhmfpjhoz", cipher.encrypt
   end
