@@ -7,20 +7,51 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Enigma, enigma
   end
 
-  def test_encrypt_method_creates_key_object
+  def test_encrypt_message_with_message_key_and_date
     enigma = Enigma.new
 
-    enigma.encrypt('Hello world', "10101", 4444)
-    require "pry"; binding.pry
+    expected = {
+        encryption: "keder ohulw",
+        key: "02715",
+        date: "040895"
+      }
+
+    assert_equal expected, enigma.encrypt("Hello world", "02715", "040895")
   end
 
+  def test_decrypt_message_with_message_key_and_date
+    enigma = Enigma.new
 
-  def test_determine_if_key_provided_returns_try_again_message
-    skip
-    key = Key.new(10101)
+    expected = {
+        decryption: "hello world",
+        key: "02715",
+        date: "040895"
+      }
 
-    assert_equal 'All user created keys must be a five-digit string.  Please try again.', key.key
+    assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
   end
+
+  def test_encrypt_message_with_message_and_key
+    enigma = Enigma.new
+
+    assert_equal 3, enigma.encrypt("Hello world", "02715").length
+    assert_equal Hash, enigma.encrypt("Hello world").class
+    assert_equal "02715", enigma.encrypt[key]
+  end
+
+  def test_decrypt_with_message_and_key
+    enigma = Enigma.new
+
+    
+  end
+
+  def test_encrypt_message_with_only_message
+    enigma = Enigma.new
+
+    assert_equal 3, enigma.encrypt("Hello world").length
+    assert_equal Hash, enigma.encrypt("Hello world").class
+  end
+end
   #
   # def test_date_argument_has_default_value
   #   enigma = Enigma.new("Hello world", "10101")
@@ -57,4 +88,3 @@ class EnigmaTest < Minitest::Test
   #   assert_equal 5, enigma.key.length
   #   assert_equal Time.now.strftime("%d%m%y"), enigma.date
   # end
-end
