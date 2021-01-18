@@ -13,6 +13,10 @@ class Cipher
     @shifts = {}
     @original_set = (("a".."z").to_a << " ")
     @unciphered_index_collection = []
+    @shift_a_set = []
+    @shift_b_set = []
+    @shift_c_set = []
+    @shift_d_set = []
   end
 
   def create_sub_keys
@@ -50,5 +54,23 @@ class Cipher
       @unciphered_index_collection << original_set.index(letter)
     end
   end
+
+  def create_shift_sets
+    @shifts.each do |letter, value|
+      if letter == "a"
+        @shift_a_set = @original_set.rotate(value)
+      elsif letter == "b"
+        @shift_b_set = @original_set.rotate(value)
+      elsif letter == "c"
+        @shift_c_set = @original_set.rotate(value)
+      else
+        @shift_d_set = @original_set.rotate(value)
+      end
+      require "pry"; binding.pry
+    end
+  end
+
+idx + 1
+idx % 1 == 0 
 
 end
