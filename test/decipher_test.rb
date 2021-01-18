@@ -32,7 +32,7 @@ class DecipherTest < Minitest::Test
 
   def test_create_shifts
     decipher = Decipher.new("keder ohulw", "02715", "1025")
-    decipher.create_shifts
+    # decipher.create_shifts
 
     expected = {"a"=>3, "b"=>27, "c"=>73, "d"=>20}
 
@@ -42,8 +42,8 @@ class DecipherTest < Minitest::Test
 
   def test_create_shift_sets
     decipher = Decipher.new("keder ohulw", "02715", "1025")
-    decipher.create_shifts
-    decipher.create_shift_sets
+    # decipher.create_shifts
+    # decipher.create_shift_sets
 
     expected_1 = ["d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
                   "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ",
@@ -67,9 +67,9 @@ class DecipherTest < Minitest::Test
 
   def test_create_ciphered_index_collection
     decipher = Decipher.new("keder ohulw", "02715", "1025")
-    decipher.create_shifts
-    decipher.create_shift_sets
-    decipher.create_ciphered_index_collection
+    # decipher.create_shifts
+    # decipher.create_shift_sets
+    # decipher.create_ciphered_index_collection
 
     expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
 
@@ -77,21 +77,20 @@ class DecipherTest < Minitest::Test
   end
 
   def test_decrypt_keder_ohulw
+    # skip
     decipher = Decipher.new("keder ohulw", "02715", "1025")
-    decipher.create_shifts
-    decipher.create_shift_sets
-    decipher.create_ciphered_index_collection
-
+    # decipher.create_shifts
+    # decipher.create_shift_sets
+    # decipher.create_ciphered_index_collection
 
     assert_equal "hello world", decipher.decrypt
   end
 
-  def test_decrypt_keder_ohulw
+  def test_decrypt_nlhmfpjhoz
     decipher = Decipher.new("nlhmfpjhoz", "52631", "8884")
-    decipher.create_shifts
-    decipher.create_shift_sets
-    decipher.create_ciphered_index_collection
-
+    # decipher.create_shifts
+    # decipher.create_shift_sets
+    # decipher.create_ciphered_index_collection
 
     assert_equal "here it is", decipher.decrypt
   end
