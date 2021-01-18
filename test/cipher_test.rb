@@ -1,8 +1,4 @@
 require './test/test_helper'
-require './lib/enigma'
-require './lib/key'
-require './lib/offset'
-require './lib/cipher'
 
 class CipherTest < Minitest::Test
   def test_it_exists
@@ -81,13 +77,22 @@ class CipherTest < Minitest::Test
     assert_equal expected_4, cipher.shift_d_set
   end
 
-  def test_encrypt
+  def test_encrypt_hello_world
     cipher = Cipher.new("Hello world", "02715", "1025")
     cipher.create_shifts
     cipher.create_shift_sets
     cipher.create_unciphered_index_collection
 
     assert_equal "keder ohulw", cipher.encrypt
+  end
+
+  def test_encrypt_here_it_is
+    cipher = Cipher.new("Here it is", "52631", "8884")
+    cipher.create_shifts
+    cipher.create_shift_sets
+    cipher.create_unciphered_index_collection
+
+    assert_equal "nlhmfpjhoz", cipher.encrypt
   end
 
 end
