@@ -68,34 +68,26 @@ class CipherTest < Minitest::Test
     expected_2 = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
                   "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x",
                   "y", "z", " "]
-    expected_3 = ["r",
- "s",
- "t",
- "u",
- "v",
- "w",
- "x",
- "y",
- "z",
- " ",
- "a",
- "b",
- "c",
- "d",
- "e",
- "f",
- "g",
- "h",
- "i",
- "j",
- "k",
- "l",
- "m",
- "n",
- "o",
- "p",
- "q"]
-    expected_4 = []
+    expected_3 = ["t", "u", "v", "w", "x", "y", "z", " ", "a", "b", "c", "d",
+                  "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+                  "q", "r", "s"]
+    expected_4 = ["u", "v", "w", "x", "y", "z", " ", "a", "b", "c", "d", "e",
+                  "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q",
+                  "r", "s", "t"]
+
+    assert_equal expected_1, cipher.shift_a_set
+    assert_equal expected_2, cipher.shift_b_set
+    assert_equal expected_3, cipher.shift_c_set
+    assert_equal expected_4, cipher.shift_d_set
+  end
+
+  def test_encrypt
+    cipher = Cipher.new("Hello world", "02715", "1025")
+    cipher.create_shifts
+    cipher.create_shift_sets
+    cipher.create_unciphered_index_collection
+
+    assert_equal "keder ohulw", cipher.encrypt
   end
 
 end
