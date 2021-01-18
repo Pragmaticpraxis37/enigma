@@ -6,7 +6,6 @@ require './lib/cipher'
 class Enigma
 
   def initialize
-
   end
 
   def encrypt(message, key='none', offset='none')
@@ -15,10 +14,11 @@ class Enigma
     cipher = Cipher.new(message, key.key, offset.squared_last_four)
   end
 
-  def decrypt(ciphertext, key, date='none')
-
-  end
-
+  def decrypt(ciphertext, key, offset='none')
+    key = Key.new(key)
+    offset = Offset.new(offset)
+    deciper = Decipher.new(ciphertext, key, offset)
+  en
 end
 
   # attr_reader :message,
