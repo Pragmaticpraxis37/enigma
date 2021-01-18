@@ -15,10 +15,9 @@ class Enigma
   end
 
   def decrypt(ciphertext, key, offset='none')
-    key = Key.new(key)
     offset = Offset.new(offset)
     deciper = Decipher.new(ciphertext, key, offset)
-  en
+  end
 end
 
   # attr_reader :message,
