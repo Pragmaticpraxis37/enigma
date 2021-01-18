@@ -56,6 +56,48 @@ class CipherTest < Minitest::Test
 
     assert_equal expected, cipher.unciphered_index_collection
   end
+
+  def test_create_shift_sets
+    cipher = Cipher.new("Hello world", "02715", "1025")
+    cipher.create_shifts
+    cipher.create_shift_sets
+
+    expected_1 = ["d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
+                  "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ",
+                  "a", "b", "c"]
+    expected_2 = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
+                  "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x",
+                  "y", "z", " "]
+    expected_3 = ["r",
+ "s",
+ "t",
+ "u",
+ "v",
+ "w",
+ "x",
+ "y",
+ "z",
+ " ",
+ "a",
+ "b",
+ "c",
+ "d",
+ "e",
+ "f",
+ "g",
+ "h",
+ "i",
+ "j",
+ "k",
+ "l",
+ "m",
+ "n",
+ "o",
+ "p",
+ "q"]
+    expected_4 = []
+  end
+
 end
 
 
