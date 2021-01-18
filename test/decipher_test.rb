@@ -73,8 +73,11 @@ class DecipherTest < Minitest::Test
     decipher = Decipher.new("keder ohulw", "02715", "1025")
     decipher.create_shifts
     decipher.create_shift_sets
+    decipher.create_ciphered_index_collection
 
-    assert_equal "keder ohulw", decipher.decrypt
+    expected = [7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3]
+
+    assert_equal expected, decipher.ciphered_index_collection
   end
 
   def test_create_ciphered_index_collection
