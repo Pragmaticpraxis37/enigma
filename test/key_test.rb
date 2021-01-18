@@ -21,13 +21,4 @@ class KeyTest < Minitest::Test
 
     assert_equal '00001', key.key
   end
-
-  def test_split_key_by_shift_returns_split_key_shifts_with_user_created_key
-    key = Key.new('12345')
-
-    assert_equal '12', key.key_shift_a
-    assert_equal '23', key.key_shift_b
-    assert_equal '34', key.key_shift_c
-    assert_equal '45', key.key_shift_d
-  end
 end
