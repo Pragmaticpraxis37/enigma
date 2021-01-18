@@ -11,6 +11,7 @@ class KeyTest < Minitest::Test
     key = Key.new('none')
 
     assert_equal 5, key.key.length
+    assert_equal String, key.key.class
   end
 
   def test_determine_if_key_provided_returns_user_created_key
