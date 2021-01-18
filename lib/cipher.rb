@@ -4,6 +4,7 @@ class Cipher
               :offset,
               :shifts,
               :original_set,
+              :sub_keys,
               :unciphered_index_collection,
               :shift_a_set,
               :shift_b_set,
@@ -16,11 +17,13 @@ class Cipher
     @offset = offset.split("")
     @shifts = {}
     @original_set = (("a".."z").to_a << " ")
-    @unciphered_index_collection = []
+    @unciphered_index_collection = create_unciphered_index_collection
     @shift_a_set = []
     @shift_b_set = []
     @shift_c_set = []
     @shift_d_set = []
+    create_shifts
+    create_shift_sets
   end
 
   def create_sub_keys
@@ -54,9 +57,12 @@ class Cipher
   end
 
   def create_unciphered_index_collection
-    @message.each do |letter|
-      @unciphered_index_collection << original_set.index(letter)
+    @message.reduce([]) do |acc, letter|
+      acc << original_set.index(letter)
     end
+    # @message.each do |letter|
+    #   @unciphered_index_collection << original_set.index(letter)
+    # end
   end
 
   def create_shift_sets
@@ -74,27 +80,23 @@ class Cipher
   end
 
   def encrypt
-    first = 1
-    second = 2
-    third = 3
-    fourth = 4
-    encoded = []
-    @unciphered_index_collection.each_with_index do |letter, index|
+    first, second, third, fourth = 1, 2, 3, 4
+    @unciphered_index_collection.each_with_index.reduce([]) do |acc, (letter, index)|
       index += 1
       if index == first
-        encoded << @shift_a_set[letter]
+        acc << @shift_a_set[letter]
         first += 4
       elsif index == second
-        encoded << @shift_b_set[letter]
+        acc << @shift_b_set[letter]
         second += 4
       elsif index == third
-        encoded << @shift_c_set[letter]
+        acc << @shift_c_set[letter]
         third += 4
       elsif index == fourth
-        encoded << @shift_d_set[letter]
+        acc << @shift_d_set[letter]
         fourth += 4
       end
-    end
-    encoded.join
+      acc
+    end.join
   end
 end
