@@ -3,7 +3,6 @@ class Key
 
   def initialize(key)
     @key = determine_if_key_provided(key)
-    split_key_by_shift(key)
   end
 
   def determine_if_key_provided(key)
