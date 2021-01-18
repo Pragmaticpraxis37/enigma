@@ -21,6 +21,9 @@ class Decipher
     @shift_c_set = []
     @shift_d_set = []
     @ciphered_index_collection = []
+    create_shifts
+    create_shift_sets
+    create_ciphered_index_collection
   end
 
   def create_sub_keys
@@ -68,10 +71,7 @@ class Decipher
   end
 
   def create_ciphered_index_collection
-    first = 1
-    second = 2
-    third = 3
-    fourth = 4
+    first, second, third, fourth = 1, 2, 3, 4
     @ciphertext.each_with_index do |letter, index|
       index += 1
       if index == first
@@ -88,6 +88,12 @@ class Decipher
         fourth += 4
       end
     end
+  end
+
+  def decrypt
+    @ciphered_index_collection.map do |index|
+      @original_set[index]
+    end.join
   end
 
 end
