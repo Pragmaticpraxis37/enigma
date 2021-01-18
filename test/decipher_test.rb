@@ -1,8 +1,4 @@
 require './test/test_helper'
-require './lib/enigma'
-require './lib/key'
-require './lib/offset'
-require './lib/decipher'
 
 class DecipherTest < Minitest::Test
   def test_it_exists
@@ -69,7 +65,7 @@ class DecipherTest < Minitest::Test
   end
 
 
-  def test_decrypt
+  def test_create_ciphered_index_collection
     decipher = Decipher.new("keder ohulw", "02715", "1025")
     decipher.create_shifts
     decipher.create_shift_sets
@@ -80,12 +76,23 @@ class DecipherTest < Minitest::Test
     assert_equal expected, decipher.ciphered_index_collection
   end
 
-  def test_create_ciphered_index_collection
-    skip
-    cipher = Cipher.new("keder ohulw", "02715", "1025")
-    cipher.create_unciphered_index_collection
+  def test_decrypt_keder_ohulw
+    decipher = Decipher.new("keder ohulw", "02715", "1025")
+    decipher.create_shifts
+    decipher.create_shift_sets
+    decipher.create_ciphered_index_collection
 
 
-    assert_equal expected, cipher.unciphered_index_collection
+    assert_equal "hello world", decipher.decrypt
+  end
+
+  def test_decrypt_keder_ohulw
+    decipher = Decipher.new("nlhmfpjhoz", "52631", "8884")
+    decipher.create_shifts
+    decipher.create_shift_sets
+    decipher.create_ciphered_index_collection
+
+
+    assert_equal "here it is", decipher.decrypt
   end
 end
