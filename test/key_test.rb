@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/enigma'
-require './lib/key'
+require './test/test_helper'
 
 class KeyTest < Minitest::Test
   def test_it_exists
