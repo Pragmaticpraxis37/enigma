@@ -37,13 +37,14 @@ class EnigmaTest < Minitest::Test
     assert_equal 3, enigma.encrypt("Hello world", "02715").length
     assert_equal Hash, enigma.encrypt("Hello world","02715").class
     assert_equal "02715", enigma.encrypt("Hello world","02715")[:key]
+    assert_equal Time.now.strftime("%d%m%y"), enigma.encrypt("Hello world", "02715")[:date]
   end
 
   def test_decrypt_with_message_and_key
     enigma = Enigma.new
 
-    assert_equal 3, enigma.decrypt("Hello world", "02715").length
-    assert_equal Hash, enigma.decrypt("Hello world","02715").class
+    assert_equal 3, enigma.decrypt("keder ohulw", "02715").length
+    assert_equal Hash, enigma.decrypt("keder ohulw","02715").class
 
   end
 
