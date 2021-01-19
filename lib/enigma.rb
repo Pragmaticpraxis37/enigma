@@ -1,4 +1,8 @@
 require 'date'
+require './lib/key'
+require './lib/offset'
+require './lib/cipher'
+require './lib/decipher'
 
 class Enigma
 
