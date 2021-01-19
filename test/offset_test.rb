@@ -32,6 +32,8 @@ class OffsetTest < Minitest::Test
     date = mock
     date.stubs(:created_date).returns("180121")
 
+    offset.square_date(date.created_date)
+
     assert_equal 32443574641, offset.squared
   end
 
